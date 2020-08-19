@@ -1,0 +1,57 @@
+.articles {
+    padding: 1%;
+    background: url(../img/articles-background.svg) no-repeat;
+    background-size: 100% 100% !important;
+    background-position: center;
+    transition: all .2s linear!important;
+    -moz-transition: all .2s linear!important;
+    -webkit-transition: all .2s linear!important;
+    -o-transition: all .2s linear!important;
+}
+/* .articles:hover{
+    background-size: 100% 100% !important;
+} */
+/* .card {
+    visibility: hidden;
+} */
+
+.my-popup{
+    position: absolute;
+    z-index: 10;
+    right: 5%;
+    background-color: rgb(81, 205, 50);
+    border-radius: 5%;
+    border-color: rgb(76, 192, 47);
+    border-style: solid;
+    border-width: 1px;
+    color: white;
+    padding: 5px;
+    padding-right: 20px;
+}
+
+
+
+a.updatearticle, a.deletearticle {
+    display: inline-block; /* Рисунок как блочный элемент */
+    background-size: cover !important;
+    width: 30px; /* Ширина рисунка в пикселах */
+    height: 30px; /* Высота рисунка */ 
+}
+a.updatearticle {
+    background: url(img/pen.svg); /* Путь к файлу с исходным  рисунком */             
+}
+a.updatearticle:hover{
+    background: url(img/penhover.svg);
+}
+a.updatearticle:active{
+    background: url(img/penactive.svg);
+}
+a.deletearticle {
+    background: url(img/articledelete.svg);
+}
+a.deletearticle:hover {
+    background: url(img/articledeletehover.svg);
+}
+a.deletearticle:active {
+    background: url(img/articledeleteactive.svg);
+}
