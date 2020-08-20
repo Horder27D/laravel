@@ -16,4 +16,12 @@ class Article extends Model
     {
         return $this->belongsTo('App\User');
     }
+    public function status()
+    {
+        return $this->belongsTo('App\Model\Status');
+    }
+    public function ratings()
+    {
+      return $this->hasMany('App\Model\Ratings', 'articles_id');
+    }
 }

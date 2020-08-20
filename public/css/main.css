@@ -1,16 +1,17 @@
-.articles {
-    padding: 1%;
-    background: url(../img/articles-background.svg) no-repeat;
-    background-size: 100% 100% !important;
-    background-position: center;
+html{
     transition: all .2s linear!important;
     -moz-transition: all .2s linear!important;
     -webkit-transition: all .2s linear!important;
     -o-transition: all .2s linear!important;
 }
-/* .articles:hover{
-    background-size: 100% 100% !important;
-} */
+.articles {
+    padding: 1%;
+    background-color: whitesmoke;
+    border: 2px solid slategray;
+}
+.articles:hover{
+    transform: scale(1.001);
+}
 /* .card {
     visibility: hidden;
 } */
@@ -19,17 +20,83 @@
     position: absolute;
     z-index: 10;
     right: 5%;
-    background-color: rgb(81, 205, 50);
-    border-radius: 5%;
-    border-color: rgb(76, 192, 47);
-    border-style: solid;
-    border-width: 1px;
-    color: white;
-    padding: 5px;
-    padding-right: 20px;
 }
 
+.file-container {
+    position: relative;
+}
+.beatiful-img, .custom-file-upload{
+    width: 150px;
+    position: relative;
+}
+img#img{
+    width: 100%;
+}
+/* Скрываем элемент <input type="file" /> */
+.file-container input[type="file"] {
+    display: none;
+}
+ 
+/* кнопка изображения */
+.custom-file-upload {
+    border: 5px solid black;
+    border-radius: 1%;
+    background-color: white;
+    background: url(../img/plus.svg) no-repeat;
+    background-size: 100% 100% !important;
+    background-position: center;
+    position: absolute;
+    margin: 0;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all .2s linear!important;
+    -moz-transition: all .2s linear!important;
+    -webkit-transition: all .2s linear!important;
+    -o-transition: all .2s linear!important;
+    border-style: dashed;
+    opacity: 0;
+    content: " ";
+}
+/*---------- Рейтинг начало ---------------*/
+.rating{
+    position: absolute;
+    width: 25%;
+    height: 15%;
+    text-align: center;
+    right: 1%;
+    top: 1%;
+    padding: 0;
+    color: #7f7f7f;
+}
+ .bar-rating{
+    width:80%;
+    float: left;
+}
+.total-rating{
+    width:20%;
+    float: left;
+    height: 100%;
+    vertical-align: middle;
+}
+/*---------- Рейтинг конец ---------------*/
+.article_detail{
+    position: absolute;
+    width: 25%;
+    height: 15%;
+    text-align: center;
+    right: 1%;
+    bottom: 1%;
+    padding: 5%;
+}
 
+.beatiful-img:hover ~ .custom-file-upload, 
+.custom-file-upload:hover{
+    opacity: 0.7;
+}
 
 a.updatearticle, a.deletearticle {
     display: inline-block; /* Рисунок как блочный элемент */

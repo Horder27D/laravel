@@ -34,7 +34,7 @@ class ImageUploadController extends Controller
         //     ->with('success','Изображение успешно загружено!')
         //     ->with('avatar',$imageName);
    
-        return redirect()->route('update.user.submit', ['name' => $request->input('name'), 'avatar' => 'img/users/'.$imageName]);
+        return redirect()->route('update.user.img', ['avatar' => 'img/users/'.$imageName]);
         // dd($request);
         // return 1;
     }

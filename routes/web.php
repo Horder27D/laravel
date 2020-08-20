@@ -55,6 +55,7 @@ Route::get('image-upload', 'ImageUploadController@imageUpload')->name('image.upl
 Route::post('image-upload', 'ImageUploadController@imageUploadPost')->name('image.upload.post');
 
 
-Route::match(['get', 'post'], '/update/submit', 'HomeController@updateusersumbit')->name('update.user.submit');
+Route::match(['get', 'post'], '/update/img', 'UserInteractionController@updateuserimg')->name('update.user.img');
+Route::match(['get', 'post'], '/update/name', 'UserInteractionController@updateusername')->name('update.user.name');
 
-Route::get('/home/{name_user}', 'UserInteractionController@index')->name('user'); //личный кабинет
+Route::match(['get', 'post'], '/home/{name_user}', 'UserInteractionController@index')->name('user'); //личный кабинет

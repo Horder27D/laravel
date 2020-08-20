@@ -11,4 +11,8 @@ class Status extends Model
     protected $fillable = [
         'name'
     ];
+    public function articles()
+    {
+      return $this->hasMany('App\Model\Article');
+    }
 }

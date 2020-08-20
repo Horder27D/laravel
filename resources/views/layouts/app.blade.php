@@ -13,6 +13,7 @@
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/jstars.min.js') }}"></script>
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -97,12 +98,12 @@
                     @endforeach
                     
                     
-                    <div class="row justify-content-center mt-1">
+                    {{-- <div class="row justify-content-center mt-1">
                         @guest
                             Для того чтобы что-нибудь отправить необходимо авторизироваться
                         @else   
                         <div class="form-group">
-                            <form class="formCreateArticle" {{--action="{{ route('article-create')}}"--}}>
+                            <form class="formCreateArticle" action="{{ route('article-create')}}">
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col"><input type="text" class="form-control" placeholder="Введите заголовок.." id="title" name="title"></th>
@@ -112,7 +113,7 @@
                             </form>
                         </div>
                         @endguest
-                    </div>
+                    </div> --}}
                     
                     <div class="row justify-content-center mt-1">
                         <tr class="endtable">
@@ -125,4 +126,5 @@
         </main>
     </div>
 </body>
+@yield('script')
 </html>

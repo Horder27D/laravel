@@ -12,13 +12,15 @@
                                         transition: .4s ease-out;
                                         transition-delay: 0.5s;" --}}>
 
-                <div class="my-popup">
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-                            {!! __('Поздравляю, вы вошли как <b>'.Auth::user()->name ).'</b>!' !!}
+                <div class="alert alert-success alert-block my-popup">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    
+                    {!! __('Поздравляю, вы вошли как <b>'.Auth::user()->name ).'</b>!..' !!}
+                    <button type="button" class="close" data-dismiss="alert">×</button>
                 </div>
     </div>
 @endauth
