@@ -13,6 +13,6 @@ class Status extends Model
     ];
     public function articles()
     {
-      return $this->hasMany('App\Model\Article');
+      return $this->hasMany('App\Model\Article', 'articles_id');
     }
 }

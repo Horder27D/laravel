@@ -59,3 +59,5 @@ Route::match(['get', 'post'], '/update/img', 'UserInteractionController@updateus
 Route::match(['get', 'post'], '/update/name', 'UserInteractionController@updateusername')->name('update.user.name');
 
 Route::match(['get', 'post'], '/home/{name_user}', 'UserInteractionController@index')->name('user'); //личный кабинет
+
+Route::match(['get', 'post'], '/home/article/{id}', 'ArticlesController@showOneArticle')->name('article');

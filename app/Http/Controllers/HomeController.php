@@ -23,15 +23,11 @@ class HomeController extends Controller
     $articles= Article::where('status_id', 3)
                       ->orderBy('updated_at', 'desc')
                       ->paginate(4);
-                      //->map(function ($item, $key) { return substr($item->dicription,0,200). "...";}); 
     $articles->transform(function ($item, $key) 
     {
-      $item->discription = substr($item->discription,0,200). "...";
-      return $item;
+      return $item->cut_discription(200);
     });
-    
-    return view('home', ['articles' => $articles,
-                        'users' => User::all()]);
+    return view('home', ['articles' => $articles]);
   }
 
   public function updateuser(Request $request)

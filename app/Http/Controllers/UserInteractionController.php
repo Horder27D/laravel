@@ -13,13 +13,11 @@ class UserInteractionController extends Controller
     {
         if(Auth::user()->roles_id>2){
             $articles= Article::whereIn('status_id', [1,2])
-            ->orderBy('updated_at', 'desc')
-            ->paginate(4);
-            //->map(function ($item, $key) { return substr($item->dicription,0,200). "...";}); 
+                                ->orderBy('updated_at', 'desc')
+                                ->paginate(4);
             $articles->transform(function ($item, $key) 
             {
-            $item->discription = substr($item->discription,0,300). "...";
-            return $item;
+                return $item->cut_discription(300);
             });
 
             return view('user', ['articles' => $articles,

@@ -2,17 +2,9 @@
 
 @section('content')
 @auth
-    <div class="container enter" {{-- style="opacity: 1;
-                                        -webkit-transition: .4s ease-out;
-                                        -webkit-transition-delay: 0.5s;
-                                        -o-transition: .4s ease-out;
-                                        -o-transition-delay: 0.5s;
-                                        -moz-transition: .4s ease-out;
-                                        -moz-transition-delay: 0.5s;
-                                        transition: .4s ease-out;
-                                        transition-delay: 0.5s;" --}}>
+    <div class="container enter">
 
-                <div class="alert alert-success alert-block my-popup">
+                <div class="alert alert-success alert-block my-popup" id="my-popup">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -28,4 +20,10 @@
 
 @section('post')
     @parent
+@endsection
+
+@section('script')
+<script>
+    setTimeout(() => $("#my-popup").fadeOut(1000), 1000);
+</script>
 @endsection

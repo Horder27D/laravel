@@ -9,12 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class ArticlesController extends Controller
 {
-    // public function user()
-    // {
-    //     # code...
-    // }
     public function showArticles (){
-        // $articles = Article::get();
         $articles= Article::paginate(4);
         return view('articles', ['articles' => $articles]);
     }
@@ -38,8 +33,7 @@ class ArticlesController extends Controller
 
     public function showOneArticle($id)
     {
-        $article = new Article();
-        return view('updatearticles', ['article' => $article->find($id)]);
+        return view('onearticle', ['article' => Article::find($id)]);
     }
 
     public function updateArticles($id, ArticleRequest $request)
@@ -51,5 +45,7 @@ class ArticlesController extends Controller
         
         return redirect()->route('articles')->with('success', 'Изменения вступили в силу');
     }
+
+
 }
 

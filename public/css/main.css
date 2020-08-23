@@ -1,16 +1,60 @@
 html{
-    transition: all .2s linear!important;
-    -moz-transition: all .2s linear!important;
-    -webkit-transition: all .2s linear!important;
-    -o-transition: all .2s linear!important;
+    transition: all 1s linear!important;
+    -moz-transition: all 1s linear!important;
+    -webkit-transition: all 1s linear!important;
+    -o-transition: all 1s linear!important;
 }
 .articles {
+    position: relative;
     padding: 1%;
     background-color: whitesmoke;
     border: 2px solid slategray;
+    overflow: hidden;
+    text-align: justify;
 }
 .articles:hover{
-    transform: scale(1.001);
+    box-shadow: 0 0 5px slategray;
+}
+.preview{
+    width: 25%;
+    float:left;
+    margin: 5px 5px 5px 0;
+}
+.article_time {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #5F5F5F;
+    font-size: 0.8rem;
+    padding: 0.5%;
+}
+.article_additionals{
+    position: relative; 
+}
+.author, .author:hover{
+    text-decoration: none;
+}
+.author span {
+    color: #212529;
+
+}
+h2+hr {
+    display: flex;
+}
+.jq-star-svg {
+    padding-left: 3px;
+    width: 100%;
+    height: 100% ;
+}
+.jq-star {
+    display: inline-block;
+}
+.jq-rating-label {
+    font-size: 22px;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    font-family: helvetica, arial, verdana;
 }
 /* .card {
     visibility: hidden;

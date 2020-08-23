@@ -11,9 +11,11 @@
 
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="{{ asset('js/jstars.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.star-rating-svg.js') }}"></script>
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -90,30 +92,10 @@
         <main class="py-4">
             <div class="container">
             @yield('content')
-
-                {{-- {{dd($articles)}} --}}
                 @if(isset($articles))
                     @foreach($articles as $article)
                         @include('include.post')
                     @endforeach
-                    
-                    
-                    {{-- <div class="row justify-content-center mt-1">
-                        @guest
-                            Для того чтобы что-нибудь отправить необходимо авторизироваться
-                        @else   
-                        <div class="form-group">
-                            <form class="formCreateArticle" action="{{ route('article-create')}}">
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col"><input type="text" class="form-control" placeholder="Введите заголовок.." id="title" name="title"></th>
-                                    <th scope="col"><textarea type="text" class="form-control" placeholder="Введите текст.." id="discription" name="discription"></textarea></th>
-                                    <th colspan="2" class="px-5"><button class="articleCreate btn btn-success btn-block" type="submit" data-href="{{ route('article-create')}}">Добавить</button></th>
-                                </tr>
-                            </form>
-                        </div>
-                        @endguest
-                    </div> --}}
                     
                     <div class="row justify-content-center mt-1">
                         <tr class="endtable">
@@ -122,6 +104,7 @@
                     </div>
                 @endif
             </div>
+            @yield('achievements')
 
         </main>
     </div>

@@ -42,10 +42,10 @@ class User extends Authenticatable
     }
     public function rating()
     {
-      return $this->hasMany('App\Model\Rating');
+      return $this->hasMany('App\Model\Rating', 'user_id');
     }
     public function articles()
     {
-      return $this->hasMany('App\Model\Article');
+      return $this->hasMany('App\Model\Article', 'user_id');
     }
 }

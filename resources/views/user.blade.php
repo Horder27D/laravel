@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 
-@section('content')
+@section('achievements')
 <div class="panel panel-primary">
     <div class="panel-body">
     
