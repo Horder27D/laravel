@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar'
+        'id', 'name', 'email', 'password', 'avatar'
     ];
 
     /**
@@ -47,5 +47,23 @@ class User extends Authenticatable
     public function articles()
     {
       return $this->hasMany('App\Model\Article', 'user_id');
+    }
+    public function count_articles()
+    {
+        return $this->articles()->where('status_id', 3)->count();
+    }
+    public function my_rating()
+    {
+        $rataut = $this->articles()->where('status_id', 3)->get();
+        return round($rataut->map(function ($item, $key) {
+                                return $item->ratings()->pluck('total');
+                                })->collapse()->avg(),3)*10;
+    }
+    public function my_karma()
+    {
+        $rataut = $this->articles()->where('status_id', 3)->get();
+        return round($rataut->map(function ($item, $key) {
+            return $item->ratings()->avg('total');
+        })->avg(),3)*10;
     }
 }

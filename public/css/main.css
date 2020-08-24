@@ -4,17 +4,78 @@ html{
     -webkit-transition: all 1s linear!important;
     -o-transition: all 1s linear!important;
 }
-.articles {
+.articles, .articles-mini {
     position: relative;
     padding: 1%;
     background-color: whitesmoke;
     border: 2px solid slategray;
-    overflow: hidden;
+    overflow: visible;
     text-align: justify;
 }
-.articles:hover{
+.articles-mini{
+    height:200px;
+}
+.articles-mini .date,
+.articles-mini .article_detail a,
+.articles-mini .article_detail button,
+.articles-mini .rating .total-rating{
+    font-size:12.5px;
+}
+.articles-mini .date{
+    position: absolute;
+    left:0.5%;
+    bottom:0.5%;
+
+    color:#7f7f7f;
+}
+.articles:hover, .articles-mini:hover{
     box-shadow: 0 0 5px slategray;
 }
+.article-tool{
+    position: absolute;
+    right: 100%;
+    z-index: 10;
+    opacity: 1;
+    overflow: visible;
+    text-align: center;
+    -webkit-transition: 0.5s linear !important;
+    -moz-transition: 0.5s linear !important;
+    -o-transition: 0.5s linear !important;
+    transition: 0.5s linear !important;
+}
+.status-article{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    font-size: 40px;
+    opacity: 0.5;
+    padding: 25%;
+    line-height: 0;
+    z-index: 11;
+}
+.container{
+    position: relative;
+}
+.status1{
+    color: orange;
+    background: repeating-linear-gradient(-60deg, tan 0, tan 1px, transparent 1px, transparent 5px);
+}
+.status2{
+    color: red;
+    background: repeating-linear-gradient(-60deg, tomato 0, tomato 1px, transparent 1px, transparent 5px);
+}
+.add-article{
+    position: absolute;
+    right:0;
+}
+/* .articles:hover .article-tool,
+.articles-mini:hover .article-tool,
+.article-tool:hover{
+    opacity: 1;
+} */
 .preview{
     width: 25%;
     float:left;
@@ -134,7 +195,7 @@ img#img{
     text-align: center;
     right: 1%;
     bottom: 1%;
-    padding: 5%;
+    z-index: 20;
 }
 
 .beatiful-img:hover ~ .custom-file-upload, 

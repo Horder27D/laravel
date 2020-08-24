@@ -37,6 +37,10 @@ class Article extends Model
     {
         return $this->ratings()->avg('total');
     }
+    public function my_status()
+    {
+        return $this->status()->pluck('name')->first();
+    }
     public function rating_author()
     {
         $rataut = Article::where('user_id', $this->user_id)->where('status_id', 3)->get();
@@ -53,7 +57,7 @@ class Article extends Model
     }
     public function cut_discription($length) 
     {
-        $this->discription=substr($this->discription,0,$length). "...";
+        $this->discription=mb_substr($this->discription,0,$length,"utf-8"). "...";
         return $this;
     }
 }

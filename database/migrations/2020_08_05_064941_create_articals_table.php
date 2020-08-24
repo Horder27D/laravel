@@ -20,7 +20,8 @@ class CreateArticalsTable extends Migration
             $table->string('preview')->default('img/default_preview.svg');
 
             $table->BigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
             $table->BigInteger('status_id')->unsigned()->default('1');
             $table->foreign('status_id')->references('id')->on('status');
 

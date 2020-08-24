@@ -17,10 +17,10 @@ class CreateRatingsTable extends Migration
             $table->id();
             
             $table->BigInteger('articles_id')->unsigned();
-            $table->foreign('articles_id')->references('id')->on('articles');
+            $table->foreign('articles_id')->references('id')->on('articles')->onDelete('cascade');;
             
             $table->BigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
 
             $table->integer('total')->default('0');
             $table->timestamps();

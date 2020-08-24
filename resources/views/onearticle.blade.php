@@ -9,10 +9,10 @@
         <h2>{{$article->title}}</h2>
         <hr />
         <p>{{$article->discription}}</p>
-        <hr />
+        <hr style="float:left;"/>
         <div class="row article_additionals">
             <div class="col">
-                <a class="author" href="{{ route('user', $article->my_user()) }}" title="Автор статьи">
+                <a class="author" href="{{ route('viewuser', $article->user_id) }}" title="Автор статьи">
                     <div class="preview"><img src="{{ asset($article->user()->pluck('avatar')->first())}}" alt="Автор статьи" style="width: 100%"></div>
                     <h3>{{$article->my_user()}}</h3>
                     <span>Количество статей: {{$article->attach_author()}}<br /></span>

@@ -27,6 +27,7 @@ class HomeController extends Controller
     {
       return $item->cut_discription(200);
     });
+    // dd($articles);
     return view('home', ['articles' => $articles]);
   }
 

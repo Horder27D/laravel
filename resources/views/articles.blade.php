@@ -1,4 +1,18 @@
-<!DOCTYPE html>
+@extends('layouts.app')
+
+@section('content')
+<h2>Мои мубликации:
+<a class="btn btn-outline-success add-article" href="{{ route('article.create', Auth::user()->id) }}">Добавить <strong>+</strong></a>
+
+<hr />
+</h2>
+@endsection
+
+@section('after_content')
+
+@endsection
+
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -90,4 +104,4 @@ $(document).ready(function () {
     });
 });
 </script>
-</html>
+</html> --}}

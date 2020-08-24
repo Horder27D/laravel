@@ -13,7 +13,9 @@
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> --}}
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
     <script src="{{ asset('js/jstars.min.js') }}"></script>
     <script src="{{ asset('js/jquery.star-rating-svg.js') }}"></script>
     
@@ -31,7 +33,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     Artiew<!-- {{ config('app.name', 'Laravel') }} -->
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -63,11 +65,11 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('user', Auth::user()->name) }}">
+                                    <a class="dropdown-item" href="{{ route('user', Auth::user()->id) }}">
                                         {{ __('Личный кабинет') }}  
                                     </a>
                                     @if(Auth::user()->roles_id>1)
-                                        <a class="dropdown-item" href="">
+                                        <a class="dropdown-item" href="{{ route('user.articles', Auth::user()->id) }}">
                                             {{ __('Мои публикации') }}  
                                         </a>
                                     @endif
@@ -91,7 +93,8 @@
 
         <main class="py-4">
             <div class="container">
-            @yield('content')
+                @yield('content')
+
                 @if(isset($articles))
                     @foreach($articles as $article)
                         @include('include.post')
@@ -103,8 +106,26 @@
                         </tr>
                     </div>
                 @endif
+                @if(isset($achivments))
+                    <div class="row justify-content-left mt-1">
+                        <?php $counforeach=0; ?>
+                        @foreach($achivments as $achivment)
+                            @if($counforeach%3==0)
+                                </div>
+                                <div class="row justify-content-left">                                
+                            @endif
+                            @include('include.article_user')
+                            <?php $counforeach++; ?>
+                        @endforeach
+                    </div>
+                    <div class="row justify-content-center mt-1">
+                        <tr class="endtable">
+                            <th scope="col" colspan="5">{{ $achivments->links() }}
+                        </tr>
+                    </div>
+                @endif
+                @yield('after_content')
             </div>
-            @yield('achievements')
 
         </main>
     </div>

@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     // return view('welcome');
+//     return redirect()->route('home');
+// });
 
 Route::match(
     ['get', 'post'],
@@ -23,17 +24,10 @@ Route::match(
     "Articles@showArticles"
 )->name('articles');
 
-Route::match(
-    ['get', 'post'],
-    '/articles/delete', 
-    "Articles@destroyArticles"
-)->name('article-destroy');
+Route::match(['get', 'post'], '/{user_id}/articles/delete', "ArticlesController@destroyArticles")->name('article.destroy');
 
-Route::match(
-    ['get', 'post'],
-    '/articles/create', 
-    "Articles@createArticles"
-)->name('article-create');
+Route::match(['get', 'post'], '/{user_id}/article/create', "ArticlesController@createArticlesPage")->name('article.create');
+Route::match(['get', 'post'], '/{user_id}/article/create/submite', "ArticlesController@createArticles")->name('article.create.submite');
     
 Route::get(
     '/articles/update/{id}', 
@@ -48,7 +42,7 @@ Route::match(
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/update', 'HomeController@updateuser')->name('update.user');
 
 Route::get('image-upload', 'ImageUploadController@imageUpload')->name('image.upload');
@@ -58,6 +52,14 @@ Route::post('image-upload', 'ImageUploadController@imageUploadPost')->name('imag
 Route::match(['get', 'post'], '/update/img', 'UserInteractionController@updateuserimg')->name('update.user.img');
 Route::match(['get', 'post'], '/update/name', 'UserInteractionController@updateusername')->name('update.user.name');
 
-Route::match(['get', 'post'], '/home/{name_user}', 'UserInteractionController@index')->name('user'); //личный кабинет
+Route::match(['get', 'post'], '/lk/{id}', 'UserInteractionController@index')->name('user'); //личный кабинет
+Route::match(['get', 'post'], '/user/{id}', 'UserInteractionController@viewUser')->name('viewuser'); //просмотр пользователя 
+Route::match(['get', 'post'], '/{id}/articles', 'UserInteractionController@viewArticles')->name('user.articles'); //просмотр публикаций 
 
-Route::match(['get', 'post'], '/home/article/{id}', 'ArticlesController@showOneArticle')->name('article');
+Route::match(['get', 'post'], '/article/{id}', 'ArticlesController@showOneArticle')->name('article');
+
+Route::match(['get', 'post'], '/home', function () {
+    // if(Auth::user()->role_id<3)
+        return redirect()->route('home');
+    // return 1;
+  })->name('adminka');

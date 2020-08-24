@@ -12,6 +12,18 @@ class RatingsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        for($i=1; $i<=30; $i++)
+        {
+            Ratings::create([
+                "articles_id"=>$i,
+                "user_id"=>'2',
+                "total"=> rand(0,10)
+            ]);
+            Ratings::create([
+                "articles_id"=>$i,
+                "user_id"=>'3',
+                "total"=> rand(0,10)
+            ]);
+        }
     }
 }
