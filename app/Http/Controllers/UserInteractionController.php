@@ -37,7 +37,7 @@ class UserInteractionController extends Controller
             return $item->cut_discription(150);
         });
         // dd($articles);
-        return view('user_view', ['achivments' => $articles, 'user' => User::find($id)]);
+        return view('user_view', ['articles' => $articles, 'user' => User::find($id)]);
     }
     public function updateuserimg(Request $request)
     {
@@ -62,6 +62,6 @@ class UserInteractionController extends Controller
         {
             return $item->cut_discription(150);
         });
-        return view('articles', ['achivments' => $articles, 'user' => Auth::user()]);
+        return view('articles', ['articles' => $articles, 'user' => Auth::user()]);
     }
 }

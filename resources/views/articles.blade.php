@@ -6,6 +6,24 @@
 
 <hr />
 </h2>
+@if(isset($articles))
+<div class="row justify-content-left mt-1">
+    <?php $counforeach=0; ?>
+    @foreach($articles as $article)
+        @if($counforeach%3==0)
+            </div>
+            <div class="row justify-content-left">                                
+        @endif
+        @include('include.article_user')
+        <?php $counforeach++; ?>
+    @endforeach
+</div>
+<div class="row justify-content-center mt-1">
+    <tr class="endtable">
+        <th scope="col" colspan="5">{{ $articles->links() }}
+    </tr>
+</div>
+@endif
 @endsection
 
 @section('after_content')

@@ -58,8 +58,4 @@ Route::match(['get', 'post'], '/{id}/articles', 'UserInteractionController@viewA
 
 Route::match(['get', 'post'], '/article/{id}', 'ArticlesController@showOneArticle')->name('article');
 
-Route::match(['get', 'post'], '/home', function () {
-    // if(Auth::user()->role_id<3)
-        return redirect()->route('home');
-    // return 1;
-  })->name('adminka');
+Route::match(['get', 'post'], '/home',  'HomeController@homeView')->name('adminka');

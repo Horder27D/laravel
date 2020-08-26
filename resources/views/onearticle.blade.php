@@ -6,10 +6,12 @@
         <div class="preview">
             <img src="{{ asset($article->preview)}}" alt="preview" style="width: 100%">
         </div>
-        <h2>{{$article->title}}</h2>
+        <div style="min-height: 300px;">
+            <h2>{{$article->title}}</h2>
+            <hr />
+            <p>{{$article->discription}}</p>
+        </div>
         <hr />
-        <p>{{$article->discription}}</p>
-        <hr style="float:left;"/>
         <div class="row article_additionals">
             <div class="col">
                 <a class="author" href="{{ route('viewuser', $article->user_id) }}" title="Автор статьи">
@@ -25,10 +27,12 @@
                     <span class="my-rating" id="rat1" data-rating="{{round($article->my_ratings(),2)}}"></span>
                     <span class="live-rating" id="rat11">{{round($article->my_ratings(),2)}}</span>
                 </div>
+                @auth
                 <div>
                     <span class="my-rating" id="rat2" data-rating="0"></span>
                     <span class="live-rating" id="rat22">0</span>
                 </div>
+                @endauth
             </div>
         </div>
     </div>

@@ -1,4 +1,3 @@
-@section('post')
 <div class="row justify-content-center mb-2 articles" id="{{$article->id}}">
     <div class="col col-lg-3 px-0">
         <div class="d-flex flex-column align-items-center">

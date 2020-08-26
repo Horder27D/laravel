@@ -33,8 +33,17 @@ class ArticlesController extends Controller
         $article->title = $request->input('title');
         $article->discription = $request->input('discription');
         $article->user_id = Auth::user()->id;
-        // if(isset($request->input('preview')))
-        //     $article->preview=$request->input('preview');
+        if(isset($request->preview))
+        {
+            $request->validate([
+                'preview' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+    
+            $imageName = time().'.'.$request->preview->extension();  
+            $request->preview->move(public_path('img/articles'), $imageName);
+            $article->preview='img/articles/'.$imageName;
+        } 
+        // dd($request);
         $article->save();
         // dd($article);
         return redirect()->route('user.articles', Auth::user()->id)->with('success', 'Статья отправлена на согласование');

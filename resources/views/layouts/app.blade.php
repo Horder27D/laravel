@@ -73,6 +73,11 @@
                                             {{ __('Мои публикации') }}  
                                         </a>
                                     @endif
+                                    @if(Auth::user()->roles_id>2)
+                                        <a class="dropdown-item" href="{{ route('adminka') }}">
+                                            {{ __('Админка') }}  
+                                        </a>
+                                    @endif
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -95,35 +100,6 @@
             <div class="container">
                 @yield('content')
 
-                @if(isset($articles))
-                    @foreach($articles as $article)
-                        @include('include.post')
-                    @endforeach
-                    
-                    <div class="row justify-content-center mt-1">
-                        <tr class="endtable">
-                            <th scope="col" colspan="5">{{ $articles->links() }}
-                        </tr>
-                    </div>
-                @endif
-                @if(isset($achivments))
-                    <div class="row justify-content-left mt-1">
-                        <?php $counforeach=0; ?>
-                        @foreach($achivments as $achivment)
-                            @if($counforeach%3==0)
-                                </div>
-                                <div class="row justify-content-left">                                
-                            @endif
-                            @include('include.article_user')
-                            <?php $counforeach++; ?>
-                        @endforeach
-                    </div>
-                    <div class="row justify-content-center mt-1">
-                        <tr class="endtable">
-                            <th scope="col" colspan="5">{{ $achivments->links() }}
-                        </tr>
-                    </div>
-                @endif
                 @yield('after_content')
             </div>
 

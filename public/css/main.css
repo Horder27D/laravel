@@ -4,6 +4,14 @@ html{
     -webkit-transition: all 1s linear!important;
     -o-transition: all 1s linear!important;
 }
+
+.nav-link {
+    color: rgba(0,0,0,.5);
+}
+.nav-link:focus, .nav-link:hover {
+    color: rgba(0,0,0,.7);
+}
+
 .articles, .articles-mini {
     position: relative;
     padding: 1%;
@@ -226,4 +234,39 @@ a.deletearticle:hover {
 }
 a.deletearticle:active {
     background: url(img/articledeleteactive.svg);
+}
+.tab-article, .tab-user, .tab-rating{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+}
+.art-item {
+    width: 32%;
+    height: 150px;
+    background-color: lawngreen;
+    border: solid 2px black;
+    margin: 1px;
+}
+.user-item{
+    width: 24%;
+    height: 150px;
+    background-color: lawngreen;
+    border: solid 2px black;
+    margin: 1px;
+}
+.rating-item-header{
+    width: 10%;
+    background-color: lawngreen;
+    border: solid 2px black;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+.rating-item{
+    width: 90%;
+    background-color: lawngreen;
+    border: solid 2px black;
+    margin-top: 1px;
+    margin-bottom: 1px;
 }
