@@ -47,23 +47,23 @@ class HomeController extends Controller
 
   public function homeView(Request $request)
   {
-    // dd(Ratings::orderBy('articles_id', 'asc')->paginate(30, ['*'], 'rat_page'));
     if(Auth::check())
       if(Auth::user()->roles_id>2)
-        // return view('admin', ['articles' => Article::where('status_id', 3)->orderBy('updated_at', 'desc')->paginate(4), 'users' => User::all()]);
-        return view('admin', ['articles' => Article::orderBy('updated_at', 'desc')->paginate(9, ['*'], 'art_page'), 'users' => User::orderBy('id', 'asc')->paginate(12, ['*'], 'user_page'), 'ratings' => Ratings::orderBy('articles_id', 'asc')->paginate(30, ['*'], 'rat_page')]);
-
+      {
+        if($request->sort==0)
+        {
+          $artical  = Article::orderBy('updated_at', 'desc')->paginate(9, ['*'], 'art_page');
+          $user     = User::orderBy('id', 'asc')->paginate(12, ['*'], 'user_page');
+          $rating   = Ratings::orderBy('articles_id', 'asc')->paginate(30, ['*'], 'rat_page');
+        }
+        else
+        {
+          $artical  = Article::where('status_id', 3)->orderBy('updated_at', 'desc')->paginate(9, ['*'], 'art_page');
+          $user     = User::orderBy('id', 'asc')->paginate(12, ['*'], 'user_page');
+          $rating   = Ratings::orderBy('articles_id', 'asc')->paginate(30, ['*'], 'rat_page');
+        }
+        return view('admin', ['articles' => $artical, 'users' => $user, 'ratings' => $rating, 'sort' => $request->sort]);
+      }
     return redirect()->route('home');
   }
-//   public function homeView($sort, Request $request)
-//   {
-//     if(Auth::check())
-//       if(Auth::user()->roles_id>2)
-//         if($sort==1)
-//           return view('admin', ['articles' => Article::where('status_id', 3)->orderBy('updated_at', 'desc')->paginate(4), 'users' => User::all()]);
-//         else
-//           return view('admin', ['articles' => Article::all()->sortBy('updated_at'), 'users' => User::all()]);
-
-//     return redirect()->route('home');
-//   }
 }

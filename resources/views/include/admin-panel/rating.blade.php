@@ -5,5 +5,5 @@
     @endforeach
 </div>
 <tr class="endtable">
-    <th scope="col" colspan="5">{{ $ratings->appends(['art_page' => $articles->currentPage(), 'user_page' => $users->currentPage(), 'rat_page' => $ratings->currentPage()])->links() }}
+    <th scope="col" colspan="5">{{ $ratings->appends(['art_page' => $articles->currentPage(), 'user_page' => $users->currentPage(), 'rat_page' => $ratings->currentPage(), 'sort' => $sort])->links() }}
 </tr>
