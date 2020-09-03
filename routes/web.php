@@ -59,3 +59,16 @@ Route::match(['get', 'post'], '/{id}/articles', 'UserInteractionController@viewA
 Route::match(['get', 'post'], '/article/{id}', 'ArticlesController@showOneArticle')->name('article');
 
 Route::match(['get', 'post'], '/home',  'HomeController@homeView')->name('adminka');
+
+Route::match(['get', 'post'], '/home/article',  'HomeController@homeViewArticles')->name('admin.article');
+Route::match(['get', 'post'], '/home/user',  'HomeController@homeViewUsers')->name('admin.user');
+Route::match(['get', 'post'], '/home/rating',  'HomeController@homeViewRatings')->name('admin.rating');
+
+Route::get('/home/article/update/{id}',  'HomeController@homeArticlesUpdate')->name('admin.article.update');
+Route::post('/home/article/update/{id}',  'ArticlesController@updatePost')->name('admin.article.update.submite');
+Route::get('/home/article/delete/{id}',  'ArticlesController@deletePost')->name('admin.article.delete');
+
+Route::match(['get', 'post'], '/home/user/update',  'HomeController@homeUsersUpdate')->name('admin.user.update');
+Route::match(['get', 'post'], '/home/rating/update',  'HomeController@homeRatingsUpdate')->name('admin.rating.update');
+
+Route::match(['get', 'post'], '/test/test/test/test/test',  'HomeController@test')->name('test');

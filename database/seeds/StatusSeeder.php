@@ -12,8 +12,8 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        Status::create(["name"=>"Processed"]);   //в обработке
-        Status::create(["name"=>"Rejected"]);    //отклонён
-        Status::create(["name"=>"Approved"]);    //утверждён
+        Status::create(["name"=>"В обработке"]);  //Processed
+        Status::create(["name"=>"Отклонено"]);    //Rejected
+        Status::create(["name"=>"Утверждён"]);    //Approved
     }
 }

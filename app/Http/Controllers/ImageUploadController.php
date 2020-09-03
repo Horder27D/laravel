@@ -24,6 +24,7 @@ class ImageUploadController extends Controller
      */
     public function imageUploadPost(Request $request)
     {
+        // dd($request);
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);

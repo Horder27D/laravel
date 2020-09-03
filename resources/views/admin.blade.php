@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card text-center">
+<div class="tab-admin">
+    <a class="admin-item" href="{{ route('admin.article') }}">Публикации</a>
+    <a class="admin-item" href="{{ route('admin.user') }}">Пользователи</a>
+    <a class="admin-item" href="{{ route('admin.rating') }}">Оценки</a>
+</div>
+{{-- <div class="card text-center">
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs" role="tablist" id="admin-panel">
             <li class="nav-item">
@@ -31,16 +36,14 @@
             </div>
           </div>
         <h5 class="card-title">Сюда выводим</h5>
-        {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-        {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
     </div>
-</div>
+</div> --}}
 @endsection
 
 @section('script')
-<script>
+{{-- <script>
     $(function () {
         $('#admin-panel li:first-child a').tab('show')
     })
-</script>
+</script> --}}
 @endsection

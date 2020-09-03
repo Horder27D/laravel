@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Model\Article;
 use App\Model\Ratings;
+use App\Model\Status;
 use App\User;
 
 class HomeController extends Controller
@@ -49,21 +50,56 @@ class HomeController extends Controller
   {
     if(Auth::check())
       if(Auth::user()->roles_id>2)
-      {
-        if($request->sort==0)
-        {
-          $artical  = Article::orderBy('updated_at', 'desc')->paginate(9, ['*'], 'art_page');
-          $user     = User::orderBy('id', 'asc')->paginate(12, ['*'], 'user_page');
-          $rating   = Ratings::orderBy('articles_id', 'asc')->paginate(30, ['*'], 'rat_page');
-        }
-        else
-        {
-          $artical  = Article::where('status_id', 3)->orderBy('updated_at', 'desc')->paginate(9, ['*'], 'art_page');
-          $user     = User::orderBy('id', 'asc')->paginate(12, ['*'], 'user_page');
-          $rating   = Ratings::orderBy('articles_id', 'asc')->paginate(30, ['*'], 'rat_page');
-        }
-        return view('admin', ['articles' => $artical, 'users' => $user, 'ratings' => $rating, 'sort' => $request->sort]);
-      }
+        return view('admin');
+        
     return redirect()->route('home');
+  }
+
+  public function homeViewArticles(Request $request)
+  {
+    
+    if(isset($request->sort))
+      {
+        if($request->sort==2)
+          return view('admin.articles', ['articles' =>Article::orderBy('created_at', 'desc')->paginate(9), 'sort' => $request->sort, 'sortname' => $request->sortname]);
+        if($request->sort==3)
+          {
+            $articles=Article::where('title', $request->sortname)->paginate(9);
+            if(!$articles->isEmpty()) return view('admin.articles', ['articles' => $articles, 'sort' => $request->sort, 'sortname' => $request->sortname]);
+          }
+        if($request->sort==4)
+          {
+            $temp=User::where('name',$request->sortname)->first();
+            if($temp)
+            {
+              $articles=$temp->articles()->orderBy('created_at', 'desc')->paginate(9);
+              if(!$articles->isEmpty())
+                return view('admin.articles', ['articles' => $articles, 'sort' => $request->sort, 'sortname' => $request->sortname]); 
+            }
+          }
+      }
+    return view('admin.articles', ['articles' => Article::orderBy('created_at', 'asc')->paginate(9), 'sort' => $request->sort, 'sortname' => $request->sortname]);
+  }
+
+  public function homeViewUsers(Request $request)
+  {
+    return view('admin.users', ['users' => User::paginate(12), 'sort' => $request->sort]);
+  }
+
+  public function homeViewRatings(Request $request)
+  {
+    return view('admin.ratings', ['ratings' => Ratings::paginate(15), 'sort' => $request->sort]);
+  }
+
+  public function homeArticlesUpdate($id, Request $request)
+  {
+    // dd(Article::find($request->id));
+    return view('admin.updatearticle', ['article' => Article::find($id), 'status' => Status::all(), 'users' => User::all()]);
+  }
+
+  public function test(Request $request)
+  {
+    dd($request);
+    return $request;
   }
 }

@@ -130,9 +130,11 @@ h2+hr {
 } */
 
 .my-popup{
-    position: absolute;
-    z-index: 10;
-    right: 5%;
+    position: fixed; 
+    right: -25%; 
+    bottom: 0; 
+    opacity: 0.85;
+    z-index: 100;
 }
 
 .file-container {
@@ -235,19 +237,44 @@ a.deletearticle:hover {
 a.deletearticle:active {
     background: url(img/articledeleteactive.svg);
 }
-.tab-article, .tab-user, .tab-rating{
+.tab-admin, .tab-article, .tab-user, .tab-rating, .tools{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     align-content: space-around;
+    border: 1px solid #dee2e6;
+    border-top: none;
+}
+.tab-admin {
+    justify-content: left;
+    border: none;
+}
+.admin-item{
+    height: 100px;
+    line-height: 90px;
+    background-color: #777777;
+    color: #DDDDDD;
+    border: #DDDDDD solid 1px;
+    border-radius: 5px;
+    padding: 5px;
+}
+.admin-item+.admin-item{
+    margin-left: 5px;
+}
+.admin-item:hover{
+    color: #F7F7F7; 
+    text-decoration: none;
 }
 .art-item {
     width: 32%;
-    height: 150px;
-    background-color: lawngreen;
-    border: solid 2px black;
+    min-height: 150px;
+    border: solid 2px #E4E4E4;
     margin: 1px;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .user-item{
     width: 24%;
@@ -269,4 +296,22 @@ a.deletearticle:active {
     border: solid 2px black;
     margin-top: 1px;
     margin-bottom: 1px;
+}
+.art-item-preview {
+    display: block;
+    float: left;
+    width: 25%;
+    margin-right: 2px;
+    text-align: center;
+    background-color: #FBFBFB;
+}
+.art-item-preview img{
+    width: 100%;
+}
+.art-item-content p{
+    line-height: 20px;
+}
+.tools {
+    justify-content: space-between;
+    border: none;
 }
