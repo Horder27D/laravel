@@ -14,9 +14,10 @@ class ArticleSeeder extends Seeder
     {
         for($i=1; $i<=30; $i++)
         {
+            $user_id=[1,3,4,5][array_rand([1,3,4,5])];
             if($i%5==0)
                 Article::create([
-                    "user_id"=>'1',
+                    "user_id"=>$user_id,
                     "title"=>"Тест ".$i,
                     "discription"=>"Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     Neque aspernatur sapiente aut, fugiat necessitatibus illo ex recusandae 
@@ -32,14 +33,14 @@ class ArticleSeeder extends Seeder
                 
             elseif ($i%11==0)
                 Article::create([
-                    "user_id"=>'1',
+                    "user_id"=>$user_id,
                     "title"=>"Тест ".$i,
                     "discription"=>"тест-тест ".$i,
                     "status_id"=>'2'
                 ]);  
             else
                 Article::create([
-                    "user_id"=>'1',
+                    "user_id"=>$user_id,
                     "title"=>"Тест ".$i,
                     "discription"=>"Eu officia dolor ipsum proident. Sint ullamco irure amet labore adipisicing laborum aute. 
 Ullamco eiusmod laboris mollit consequat reprehenderit magna deserunt amet commodo. Deserunt consectetur 

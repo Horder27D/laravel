@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Model\Article;
 use App\User;
 
@@ -63,5 +64,35 @@ class UserInteractionController extends Controller
             return $item->cut_discription(150);
         });
         return view('articles', ['articles' => $articles, 'user' => Auth::user()]);
+    }
+    public function updateUser($id, Request $request)
+    {
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        if(!$request->password)
+            $user->password = Hash::make($request->input('password'));
+        $user->roles_id = $request->input('roles_id');
+        // dd($request, $request->roles_id);
+        if(isset($request->avatar))
+        {
+            $request->validate([
+                'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+    
+            $imageName = time().'.'.$request->avatar->extension();  
+            $request->avatar->move(public_path('img/users'), $imageName);
+            $user->avatar='img/users/'.$imageName;
+        } 
+        $user->save();
+
+        return redirect()->route('admin.user')->with('success', 'Пользователь '.$user->name.' успешно отредактирован!');
+    }
+    public function deleteUser($id, Request $request)
+    {    
+        // dd($id, User::find($id), $request);
+        $username=User::find($id)->name;
+        User::find($id)->delete();
+        return redirect()->route('admin.user')->with('success', $username.' успешно удалён!');
     }
 }

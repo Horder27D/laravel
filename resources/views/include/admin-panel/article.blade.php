@@ -8,7 +8,7 @@
                 </div>
                 <h4>{{$article->title}}</h4>
                 <p>{{$article->cut_discription(150)->discription}}</p>
-                <span>{{$article->created_at}}</span>
+                <span>Дата создания: {{$article->created_at}}</span>
                 <p>Статус:
                     @if($article->status_id==1)
                         <strong style="color: orange;">
@@ -38,7 +38,7 @@
     @endforeach
 </div>
 <tr class="endtable">
-    <th scope="col" colspan="5">{{ $articles->appends(['page' => $articles->currentPage(),'sort' => $sort, 'sortname' => $sortname])->links() }}
+    <th scope="col" colspan="5">{{ $articles->links() }}
     {{-- <th scope="col" colspan="5">{{ $articles->appends(['art_page' => $articles->currentPage(), 'user_page' => $users->currentPage(), 'rat_page' => $ratings->currentPage(), 'sort' => $sort])->links() }} --}}
 </tr>
 

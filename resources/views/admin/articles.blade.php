@@ -1,11 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (session('success'))
-    <div class="alert alert-success my-popup" role="alert">
-        {{ session('success') }}
-    </div>
-    @endif
+    @include('include.alert.success')
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link active" href="{{ route('admin.article') }}">Публикации</a>
@@ -19,7 +15,7 @@
     </ul>
     <nav class="nav" style="border-left: 1px solid #dee2e6; border-right: 1px solid #dee2e6; padding: 5px;">
         <label for="inpitSrot" style="margin-top: auto; margin-bottom: auto; margin-right: 5px;">Сортировка публикаций</label>
-        <form class="form-inline" action="{{ route('admin.article') }}"{{--"#"--}} style="overflow: hidden">
+        <form class="form-inline" action="{{ route('admin.article') }}" style="overflow: hidden">
             <select name="sort" id="inputSort" class="form-control">
                     <option value="1">По возрастанию даты</option>
                     <option value="2">По убыванию даты</option>

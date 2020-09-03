@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Model\Article;
 use App\Model\Ratings;
 use App\Model\Status;
+use App\Model\Roles;
 use App\User;
 
 class HomeController extends Controller
@@ -57,15 +58,17 @@ class HomeController extends Controller
 
   public function homeViewArticles(Request $request)
   {
-    
     if(isset($request->sort))
       {
         if($request->sort==2)
-          return view('admin.articles', ['articles' =>Article::orderBy('created_at', 'desc')->paginate(9), 'sort' => $request->sort, 'sortname' => $request->sortname]);
-        if($request->sort==3)
+        {
+          $articles=Article::orderBy('created_at', 'desc')->paginate(9);
+          return view('admin.articles', ['articles' => $articles->appends(['page' => $articles->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]);
+        }
+          if($request->sort==3)
           {
             $articles=Article::where('title', $request->sortname)->paginate(9);
-            if(!$articles->isEmpty()) return view('admin.articles', ['articles' => $articles, 'sort' => $request->sort, 'sortname' => $request->sortname]);
+            if(!$articles->isEmpty()) return view('admin.articles', ['articles' => $articles->appends(['page' => $articles->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]);
           }
         if($request->sort==4)
           {
@@ -74,16 +77,32 @@ class HomeController extends Controller
             {
               $articles=$temp->articles()->orderBy('created_at', 'desc')->paginate(9);
               if(!$articles->isEmpty())
-                return view('admin.articles', ['articles' => $articles, 'sort' => $request->sort, 'sortname' => $request->sortname]); 
+                return view('admin.articles', ['articles' => $articles->appends(['page' => $articles->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]); 
             }
           }
       }
-    return view('admin.articles', ['articles' => Article::orderBy('created_at', 'asc')->paginate(9), 'sort' => $request->sort, 'sortname' => $request->sortname]);
+    $articles=Article::orderBy('created_at', 'asc')->paginate(9);
+    return view('admin.articles', ['articles' => $articles->appends(['page' => $articles->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]);
   }
 
   public function homeViewUsers(Request $request)
   {
-    return view('admin.users', ['users' => User::paginate(12), 'sort' => $request->sort]);
+    if(isset($request->sort))
+    {
+      if($request->sort==2)
+      {
+        $user=User::orderBy('created_at', 'desc')->paginate(12);
+        return view('admin.users', ['users' => $user->appends(['page' => $user->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]);
+      }
+        if($request->sort==3)
+        {
+          $user=User::where('name', $request->sortname)->paginate(12);
+          if(!$user->isEmpty()) return view('admin.users', ['users' => $user->appends(['page' => $user->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]);
+        }
+    }
+
+    $user=User::orderBy('created_at', 'asc')->paginate(12);
+    return view('admin.users', ['users' => $user->appends(['page' => $user->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort]);
   }
 
   public function homeViewRatings(Request $request)
@@ -96,7 +115,10 @@ class HomeController extends Controller
     // dd(Article::find($request->id));
     return view('admin.updatearticle', ['article' => Article::find($id), 'status' => Status::all(), 'users' => User::all()]);
   }
-
+  public function homeUsersUpdate($id, Request $request)
+  {
+    return view('admin.updateuser', ['user' => User::find($id), 'roles' => Roles::all()]);
+  }
   public function test(Request $request)
   {
     dd($request);
