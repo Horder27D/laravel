@@ -1,4 +1,7 @@
 <div class="tab-user">
+    @if($users->isEmpty())
+        <label>По данному запросу ничего не найдено</label>
+    @endif
     @foreach ($users as $user)
         {{-- <div class="user-item">{{$user->id}}</div> --}}
         <div class="user-item">

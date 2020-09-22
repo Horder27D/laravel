@@ -21,4 +21,16 @@ class Ratings extends Model
     {
         return $this->belongsTo('App\Model\Article');
     }
+    public function my_user()
+    {
+        return $this->user->name;
+    }
+    public function my_article()
+    {
+        return $this->articles->title;
+    }
+    public function article_user()
+    {
+        return $this->articles->my_user();
+    }
 }

@@ -21,9 +21,3 @@
         </div>
     </div>
 </div>
-
-
-{{-- deletModal @yield('modal-id') $modalid --}} 
-{{-- Удаление {{$article->title}} @yield('modal-title') $modaltitle --}} 
-{{--Вы уверены что хотите удалить данный пост? @yield('modal-body') $modalbody --}}
-{{-- ссылка на решение @yield('modal-success') $modalsuccess --}}

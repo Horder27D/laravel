@@ -72,6 +72,7 @@ Route::match(['get', 'post'], '/home/user/update/{id}',  'HomeController@homeUse
 Route::post('/home/user/update/{id}',  'UserInteractionController@updateUser')->name('admin.user.update.submite');
 Route::get('/home/user/delete/{id}',  'UserInteractionController@deleteUser')->name('admin.user.delete');
 
-Route::match(['get', 'post'], '/home/rating/update',  'HomeController@homeRatingsUpdate')->name('admin.rating.update');
+Route::post('/home/rating/update/{id}',  'RatingsController@updateRating')->name('admin.rating.update');
+Route::get('/home/rating/delete/{id}',  'RatingsController@deleteRating')->name('admin.rating.delete');
 
 Route::match(['get', 'post'], '/test/test/test/test/test',  'HomeController@test')->name('test');

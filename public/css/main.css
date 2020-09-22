@@ -289,11 +289,13 @@ a.deletearticle:active {
     margin-bottom: 1px;
 }
 .rating-item{
-    width: 90%;
-    background-color: lawngreen;
-    border: solid 2px black;
+    display: inline-flex;
+    width: 98%;
+    border: solid 2px #E4E4E4;
     margin-top: 1px;
     margin-bottom: 1px;
+    padding: 4px;
+    justify-content: space-between;
 }
 .art-item-preview, .user-item-preview {
     display: block;
@@ -316,4 +318,25 @@ a.deletearticle:active {
 .tools {
     justify-content: space-between;
     border: none;
+}
+
+.rat-item-1, /*Имя статьи*/
+.rat-item-2, /*Имя автора статьи*/
+.rat-item-3, /*Имя автора оценки*/
+.rat-item-4, /*Дата создания*/
+.rat-item-5, /*Бал*/
+.rat-item-6 /*инструменты*/ {
+    text-align: center;
+}
+.rat-item-1, .rat-item-3, .rat-item-5 {
+    width: 10%;
+}
+.rat-item-2, .rat-item-3 {
+    width: 15%;
+}
+.rat-item-4 {
+    width: 20%;
+}
+.rat-item-6 {
+    width: 25%;
 }

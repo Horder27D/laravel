@@ -26,7 +26,7 @@ class Article extends Model
     }
     public function my_user()
     {
-        return $this->user()->pluck('name')->first();
+        return $this->user->name;
     }
     public function attach_author()
     {
@@ -39,7 +39,7 @@ class Article extends Model
     }
     public function my_status()
     {
-        return $this->status()->pluck('name')->first();
+        return $this->status->name;
     }
     public function rating_author()
     {

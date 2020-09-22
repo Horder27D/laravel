@@ -42,7 +42,7 @@ class User extends Authenticatable
     }
     public function rating()
     {
-      return $this->hasMany('App\Model\Rating', 'user_id');
+      return $this->hasMany('App\Model\Ratings', 'user_id');
     }
     public function articles()
     {
@@ -50,7 +50,7 @@ class User extends Authenticatable
     }
     public function my_roles()
     {
-        return $this->roles()->pluck('name')->first();
+        return $this->roles->name;
     }
     public function count_articles()
     {

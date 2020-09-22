@@ -68,7 +68,7 @@ class HomeController extends Controller
           if($request->sort==3)
           {
             $articles=Article::where('title', $request->sortname)->paginate(9);
-            if(!$articles->isEmpty()) return view('admin.articles', ['articles' => $articles->appends(['page' => $articles->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]);
+            return view('admin.articles', ['articles' => $articles->appends(['page' => $articles->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]);
           }
         if($request->sort==4)
           {
@@ -76,9 +76,10 @@ class HomeController extends Controller
             if($temp)
             {
               $articles=$temp->articles()->orderBy('created_at', 'desc')->paginate(9);
-              if(!$articles->isEmpty())
-                return view('admin.articles', ['articles' => $articles->appends(['page' => $articles->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]); 
+              return view('admin.articles', ['articles' => $articles->appends(['page' => $articles->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]); 
             }
+            else
+              return view('admin.articles', ['articles' => Article::where('title','/&/&/&/&/')->paginate(9)]);
           }
       }
     $articles=Article::orderBy('created_at', 'asc')->paginate(9);
@@ -97,7 +98,7 @@ class HomeController extends Controller
         if($request->sort==3)
         {
           $user=User::where('name', $request->sortname)->paginate(12);
-          if(!$user->isEmpty()) return view('admin.users', ['users' => $user->appends(['page' => $user->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]);
+          return view('admin.users', ['users' => $user->appends(['page' => $user->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]);
         }
     }
 
@@ -107,7 +108,64 @@ class HomeController extends Controller
 
   public function homeViewRatings(Request $request)
   {
-    return view('admin.ratings', ['ratings' => Ratings::paginate(15), 'sort' => $request->sort]);
+  if(isset($request->sort))
+    {
+      if($request->sort==2)
+      {
+        $ratings=Ratings::orderBy('created_at', 'desc')->paginate(20);
+        return view('admin.ratings', ['ratings' => $ratings->appends(['page' => $ratings->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]);
+      }
+      /* Оценки посту */
+      if($request->sort==3)
+      {
+        $temp=Article::where('title',$request->sortname)->first();
+        if($temp)
+        {
+          $ratings=$temp->ratings()->orderBy('created_at', 'desc')->paginate(20);
+          return view('admin.ratings', ['ratings' => $ratings->appends(['page' => $ratings->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]); 
+        }
+        else
+          return view('admin.ratings', ['ratings' => Ratings::where('total','11')->paginate(9)]);
+      }
+      /* Оценки пользователя */
+      if($request->sort==4)
+      {
+        $temp=User::where('name',$request->sortname)->first();
+        if($temp)
+        {
+          $ratings=$temp->rating()->orderBy('created_at', 'desc')->paginate(20);
+          return view('admin.ratings', ['ratings' => $ratings->appends(['page' => $ratings->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]); 
+        }
+        else
+          return view('admin.ratings', ['ratings' => Ratings::where('total','11')->paginate(9)]);
+      }
+      /* Оценки пользователю */
+      if($request->sort==5)
+      {
+        $temp=User::where('name',$request->sortname)->first();
+        // dd($temp);
+        if($temp)
+        {
+          $temp = $temp->articles->flatMap(function ($item, $key) {
+            return $item->ratings;
+          });
+          $currentPage = \Illuminate\Pagination\Paginator::resolveCurrentPage();
+          $prePage = 20;
+          $ratings = new \Illuminate\Pagination\LengthAwarePaginator($temp->sortBy('created_at')->forPage($currentPage, $prePage), 
+                                                                    $temp->count(), 
+                                                                    $prePage, 
+                                                                    $currentPage);
+          $ratings->setpath(asset($request->path()));
+          return view('admin.ratings', ['ratings' => $ratings->appends(['page' => $ratings->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]); 
+        }
+        else
+          return view('admin.ratings', ['ratings' => Ratings::where('total','11')->paginate(9)]);
+      }
+    }
+    $ratings=Ratings::orderBy('created_at', 'asc')->paginate(20);
+    return view('admin.ratings', ['ratings' => $ratings->appends(['page' => $ratings->currentPage(),'sort' => $request->sort, 'sortname' => $request->sortname]), 'sort' => $request->sort, 'sortname' => $request->sortname]);
+  
+    // return view('admin.ratings', ['ratings' => Ratings::paginate(20), 'sort' => $request->sort]);
   }
 
   public function homeArticlesUpdate($id, Request $request)

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('include.alert.success')
+    @include('include.alert.alert')
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link active" href="{{ route('admin.article') }}">Публикации</a>
@@ -13,25 +13,16 @@
             <a class="nav-link" href="{{ route('admin.rating') }}">Оценки</a>
         </li>
     </ul>
-    <nav class="nav" style="border-left: 1px solid #dee2e6; border-right: 1px solid #dee2e6; padding: 5px;">
-        <label for="inpitSrot" style="margin-top: auto; margin-bottom: auto; margin-right: 5px;">Сортировка публикаций</label>
-        <form class="form-inline" action="{{ route('admin.article') }}" style="overflow: hidden">
-            <select name="sort" id="inputSort" class="form-control">
-                    <option value="1">По возрастанию даты</option>
-                    <option value="2">По убыванию даты</option>
-                    <option value="3">По наименованию</option>
-                    <option value="4">По автору</option>
-            </select>
-            <div class="search" style="position: relative; display: flex;">
-                <div class="search-item" style="display: none; position: relative; overflow: hidden; width: 0%;">
-                    <input class="form-control" type="search" name="sortname" placeholder="Поиск.." aria-label="Search">
-                </div>
-                <button class="btn btn-outline-dark" type="submit" style="">
-                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                </button>
-            </div>
-        </form>
-    </nav>
+    @php
+        $search=collect(['label' => 'Сортировка публикаций', 
+        'route' => '', 'option' => collect([
+            ['id' => '1', 'text' => 'По возрастанию даты'],
+            ['id' => '2', 'text' => 'По убыванию даты'],
+            ['id' => '3', 'text' => 'По наименованию'],
+            ['id' => '4', 'text' => 'По автору']
+        ])]);
+    @endphp
+    @include('include.admin-panel.search')
     @include('include.admin-panel.article')
 @endsection
 

@@ -1,4 +1,7 @@
 <div class="tab-article">
+    @if($articles->isEmpty())
+        <label>По данному запросу ничего не найдено</label>
+    @endif
     @foreach ($articles as $article)
         <div class="art-item">
             <div class="art-item-content">
