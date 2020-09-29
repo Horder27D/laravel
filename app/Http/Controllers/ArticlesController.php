@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
-    public function showArticles (){
+    public function showArticles ()
+    {
         $articles= Article::paginate(4);
         return view('articles', ['articles' => $articles]);
     }
@@ -27,6 +28,7 @@ class ArticlesController extends Controller
     {     
         return view('article_create');
     }
+
     public function createArticles(Request $request)
     {     
         // dd($request->input('title'), $request->input('discription'), $request->input('preview'));
@@ -34,8 +36,7 @@ class ArticlesController extends Controller
         $article->title = $request->input('title');
         $article->discription = $request->input('discription');
         $article->user_id = Auth::user()->id;
-        if(isset($request->preview))
-        {
+        if (isset($request->preview)) {
             $request->validate([
                 'preview' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
@@ -56,14 +57,30 @@ class ArticlesController extends Controller
         return view('onearticle', ['article' => Article::find($id)]);
     }
 
-    public function updateArticles($id, ArticleRequest $request)
+    public function updateArticles($id)
+    {
+        return view('article_update', ['article' => Article::find($id)]);
+    }
+
+    public function updatesubmiteArticles($id, ArticleRequest $request)
     {     
         $article = Article::find($id);
+        // dd($request, $article);
         $article->title = $request->input('title');
         $article->discription = $request->input('discription');
+        $article->status_id = 1;
+        if (isset($request->preview)) {
+            $request->validate([
+                'preview' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+    
+            $imageName = time().'.'.$request->preview->extension();  
+            $request->preview->move(public_path('img/articles'), $imageName);
+            $article->preview='img/articles/'.$imageName;
+        } 
         $article->save();
-        
-        return redirect()->route('articles')->with('success', 'Изменения вступили в силу');
+        // return 1;
+        return redirect()->route('user.articles', $article->id)->with('success', $article->title.' успешно отредактирован!');
     }
 
     public function updatePost($id, ArticleRequest $request)
@@ -75,8 +92,7 @@ class ArticlesController extends Controller
         $article->status_id = $request->input('status');
         $article->created_at = $request->input('created_at');
         // dd($request->preview);
-        if(isset($request->preview))
-        {
+        if (isset($request->preview)) {
             $request->validate([
                 'preview' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);

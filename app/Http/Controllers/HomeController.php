@@ -58,8 +58,7 @@ class HomeController extends Controller
 
   public function homeViewArticles(Request $request)
   {
-    if(isset($request->sort))
-      {
+    if (isset($request->sort)) {
         if($request->sort==2)
         {
           $articles=Article::orderBy('created_at', 'desc')->paginate(9);

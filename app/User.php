@@ -36,30 +36,37 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
     public function roles()
     {
         return $this->belongsTo('App\Model\Roles');
     }
+
     public function rating()
     {
       return $this->hasMany('App\Model\Ratings', 'user_id');
     }
+
     public function articles()
     {
       return $this->hasMany('App\Model\Article', 'user_id');
     }
+
     public function my_roles()
     {
         return $this->roles->name;
     }
+
     public function count_articles()
     {
         return $this->articles()->count();
     }
+
     public function count_approved_articles()
     {
         return $this->articles()->where('status_id', 3)->count();
     }
+
     public function my_rating()
     {
         $rataut = $this->articles()->where('status_id', 3)->get();
@@ -67,6 +74,7 @@ class User extends Authenticatable
                                 return $item->ratings()->pluck('total');
                                 })->collapse()->avg(),3)*10;
     }
+
     public function count_rating()
     {
         $rataut = $this->articles()->get();
@@ -74,6 +82,7 @@ class User extends Authenticatable
                                 return $item->ratings()->count();
                                 })->sum();
     }
+
     public function my_karma()
     {
         $rataut = $this->articles()->where('status_id', 3)->get();
@@ -81,6 +90,7 @@ class User extends Authenticatable
             return $item->ratings()->avg('total');
         })->avg(),3)*10;
     }
+    
     public function date() 
     {
         return mb_substr($this->created_at,0,10,"utf-8");

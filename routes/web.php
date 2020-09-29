@@ -28,17 +28,9 @@ Route::match(['get', 'post'], '/{user_id}/articles/delete', "ArticlesController@
 
 Route::match(['get', 'post'], '/{user_id}/article/create', "ArticlesController@createArticlesPage")->name('article.create');
 Route::match(['get', 'post'], '/{user_id}/article/create/submite', "ArticlesController@createArticles")->name('article.create.submite');
-    
-Route::get(
-    '/articles/update/{id}', 
-    'Articles@showOneArticle'
-)->name('article-update-page');
 
-Route::match(
-    ['get', 'post'],
-    '/articles/update/{id}/success',
-    'Articles@updateArticles'
-)->name('article-update');
+Route::match(['get', 'post'], '/{user_id}/article/update', "ArticlesController@updateArticles")->name('article.update');
+Route::match(['get', 'post'], '/{user_id}/article/update/submite', "ArticlesController@updatesubmiteArticles")->name('article.update.submite');
 
 Auth::routes();
 

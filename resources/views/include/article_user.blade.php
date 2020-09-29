@@ -25,7 +25,7 @@
                             {{-- <a class="dropdown-item" href="{{ route('article-destroy')}}">Удалить</a> --}}
                             <a class="dropdown-item" data="{{$article->id}}" href="{{ route('article.destroy', ['user_id' => $article->user_id, 'id' => $article->id])}}">Удалить</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Редактировать</a>
+                            <a class="dropdown-item" href="{{ route('article.update', $article->id) }}">Редактировать</a>
                         </div>
                       </div>
                 </div>

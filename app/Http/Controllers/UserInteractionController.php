@@ -40,6 +40,7 @@ class UserInteractionController extends Controller
         // dd($articles);
         return view('user_view', ['articles' => $articles, 'user' => User::find($id)]);
     }
+
     public function updateuserimg(Request $request)
     {
         $user = Auth::user();
@@ -65,6 +66,7 @@ class UserInteractionController extends Controller
         });
         return view('articles', ['articles' => $articles, 'user' => Auth::user()]);
     }
+    
     public function updateUser($id, Request $request)
     {
         $user = User::find($id);
