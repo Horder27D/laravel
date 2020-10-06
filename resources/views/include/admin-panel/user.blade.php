@@ -1,4 +1,4 @@
-<div class="tab-user">
+<div class="tab-user bg-white">
     @if($users->isEmpty())
         <label>По данному запросу ничего не найдено</label>
     @endif

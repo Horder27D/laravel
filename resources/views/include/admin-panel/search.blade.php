@@ -1,4 +1,4 @@
-<nav class="nav" style="border-left: 1px solid #dee2e6; border-right: 1px solid #dee2e6; padding: 5px;">
+<nav class="nav bg-white" style="border-left: 1px solid #dee2e6; border-right: 1px solid #dee2e6; padding: 5px;">
     <label for="inpitSrot" style="margin-top: auto; margin-bottom: auto; margin-right: 5px;">{{$search->get('label')}}</label>
     <form class="form-inline" action="{{$search->get('route')}}" style="overflow: hidden">
         <select name="sort" id="inputSort" class="form-control">

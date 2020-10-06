@@ -1,4 +1,4 @@
-<div class="tab-article">
+<div class="tab-article bg-white">
     @if($articles->isEmpty())
         <label>По данному запросу ничего не найдено</label>
     @endif

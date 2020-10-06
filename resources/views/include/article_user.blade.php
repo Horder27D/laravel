@@ -1,5 +1,5 @@
 <div class="col-4 articles-mini" id="{{$article->id}}">
-    <div class="preview">
+    <div class="preview" style="margin-top: 0;">
         <img src="{{ asset($article->preview)}}" alt="avatar" style="width: 100%">
     </div>
     <div class="rating">

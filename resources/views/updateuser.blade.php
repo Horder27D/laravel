@@ -18,10 +18,10 @@
                             <span>Моё изображение:</span><br>
                             <img src="{{ Auth::user()->avatar }}" style="width: 150px;">
                             @if ($message = Session::get('success'))
-                            <div class="alert alert-success alert-block">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <strong>{{ $message }}</strong>
-                            </div>
+                                <div class="alert alert-success alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>{{ $message }}</strong>
+                                </div>
                             @endif
                             
                             @if (count($errors) > 0)

@@ -1,4 +1,4 @@
-<div class="tab-rating">
+<div class="tab-rating bg-white">
     <div class="rating-item">
         <div class="rat-item-1"><label>Статья</label></div>
         <div class="rat-item-2"><label>Автор статьи</label></div>
@@ -14,7 +14,7 @@
     <form class="rating-item" action="{{ route('admin.rating.update', $rating->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         {{-- <form action="{{ route('admin.ratings.update', $rating->id) }}" method="post" enctype="multipart/form-data"> --}}
-            <div class="rat-item-1">{{$rating->my_article()}}</div>
+            <div class="rat-item-1" title="{{$rating->my_article()}}">{{$rating->articles->cut_title(10)->title}}</div>
             <div class="rat-item-2">{{$rating->article_user()}}</div>
             <div class="rat-item-3">{{$rating->my_user()}}</div>
             <div class="rat-item-4">{{$rating->created_at}}</div>

@@ -7,6 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="shortcut icon" href="https://www.flaticon.com/svg/static/icons/svg/2921/2921273.svg" type="image/x-icon">
     <title>Artiew</title>  
 
     <!-- Scripts -->
@@ -32,11 +33,9 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Artiew<!-- {{ config('app.name', 'Laravel') }} -->
-                </a>
+                <a class="navbar-brand" href="{{ url('/') }}">Artiew</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

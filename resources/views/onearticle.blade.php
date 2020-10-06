@@ -7,7 +7,7 @@
             <img src="{{ asset($article->preview)}}" alt="preview" style="width: 100%">
         </div>
         <div style="min-height: 300px;">
-            <h2>{{$article->title}}</h2>
+            <h2 style="margin-top: 20px;">{{$article->title}}</h2>
             <hr />
             <p>{{$article->discription}}</p>
         </div>
@@ -60,7 +60,7 @@
     },
     callback: function(currentRating, $el){
       alert('Вы хотите поставить оценку ', currentRating);
-      console.log('DOM element ', $el);
+      console.log('Оценка ', $el);
   }
   });
 </script>

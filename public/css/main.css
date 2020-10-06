@@ -1,27 +1,44 @@
 html{
-    transition: all 1s linear!important;
-    -moz-transition: all 1s linear!important;
-    -webkit-transition: all 1s linear!important;
-    -o-transition: all 1s linear!important;
+    background-color: #f5f7fc;
 }
 
+main{
+    height: 100%;
+    background-color:#f5f7fc;
+}
 .nav-link {
     color: rgba(0,0,0,.5);
 }
 .nav-link:focus, .nav-link:hover {
     color: rgba(0,0,0,.7);
 }
-
+.bg-white{
+    background-color: white;
+}
 .articles, .articles-mini {
     position: relative;
-    padding: 1%;
-    background-color: whitesmoke;
-    border: 2px solid slategray;
+    border: 1px solid #EAEAEA;
     overflow: visible;
     text-align: justify;
+    background-color: white;
+}
+.none-a, .none-a:hover{
+    text-decoration: none;
+    color: black;
 }
 .articles-mini{
-    height:200px;
+    min-height:200px;
+    padding-bottom: 60px;
+}
+.art-image{
+    overflow: hidden;
+}
+.date{
+    color: #4d555a;
+    font-size: small;
+}
+.badge{
+    font-size: 100%;
 }
 .articles-mini .date,
 .articles-mini .article_detail a,
@@ -36,8 +53,15 @@ html{
 
     color:#7f7f7f;
 }
-.articles:hover, .articles-mini:hover{
-    box-shadow: 0 0 5px slategray;
+h2{
+    transition: all .2s linear!important;
+    -moz-transition: all .2s linear!important;
+    -webkit-transition: all .2s linear!important;
+    -o-transition: all .2s linear!important;
+}
+.articles:hover>.col h2, .articles-mini:hover>.col h2{
+    color: #004CA0;
+    text-decoration: underline;
 }
 .article-tool{
     position: absolute;
@@ -63,6 +87,7 @@ html{
     padding: 25%;
     line-height: 0;
     z-index: 11;
+    white-space: nowrap;
 }
 .container{
     position: relative;

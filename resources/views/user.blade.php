@@ -52,24 +52,21 @@
 @section('script')
 <script>
     function readURL(input) {
-
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#img').attr('src', e.target.result);
-        };
-
-        reader.readAsDataURL(input.files[0]);
-    }
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#img').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
     }
     $("#imgInput").change(function(){
-    $('#img-submit').prop('disabled', false);;
-    readURL(this);
+        $('#img-submit').prop('disabled', false);;
+        readURL(this);
     });
     
     $("#name").change(function(){
-    $('#name-submit').prop('disabled', false);;
+        $('#name-submit').prop('disabled', false);;
     });
 </script>
 @endsection

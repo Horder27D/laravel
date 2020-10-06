@@ -60,6 +60,11 @@ class Article extends Model
         $this->discription=mb_substr($this->discription,0,$length,"utf-8"). "...";
         return $this;
     }
+    public function cut_title($length) 
+    {
+        $this->title=mb_substr($this->title,0,$length,"utf-8"). "..";
+        return $this;
+    }
     public function date() 
     {
         return mb_substr($this->created_at,0,10,"utf-8");
